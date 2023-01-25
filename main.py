@@ -1,15 +1,5 @@
-class Perro():
-    def __init__(self, nombre):
-        self.nombre = nombre
-    
-    @property
-    def nombre(self):
-        return self._nombre
-    @nombre.setter
-    def nombre(self, nombre):
-        self._nombre = nombre
+from pomodoro import Pomodoro
+from menu import Menu
 
-
-perrico = Perro("Firulais")
-print(perrico.nombre)
-perrico.nombre = "Firulais 2"
+main_menu = Menu()
+main_menu.start_program()
