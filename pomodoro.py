@@ -4,7 +4,7 @@ from PyInquirer import prompt
 class Pomodoro():
     '''Pomodoro class'''
     def __init__(self, duration: int):
-        self.__duration = duration
+        self.duration = duration
         self.status = 'running'
     
     @property
@@ -18,16 +18,22 @@ class Pomodoro():
     
     def countdown(self) -> None:
         
-        num_of_secs = self.__duration * 60
-        while num_of_secs and self.status == 'running':
-            m, s = divmod(num_of_secs, 60)
-            min_sec_format = f'🍅🍅 {int(m)}:{int(s)}'
-            print(min_sec_format, end='\r')
-            
-            time.sleep(1)
-            num_of_secs -= 1
+        num_of_secs = self.duration * 60
+        while num_of_secs:
+            if self.status == 'running':
+                m, s = divmod(num_of_secs, 60)
+                min_sec_format = f'🍅🍅 {int(m)}:{int(s)}'
+                print(min_sec_format, end='\r')
 
-        print('Pomodoro finished.')
+                time.sleep(1)
+                num_of_secs -= 1
+
+            elif self.status == 'paused':
+                pass
+            elif self.status == 'stopped':
+                num_of_secs = 0 
+            else:
+                raise ValueError('Status must be running, paused, or stopped.')
 
     def start(self):
         '''Change status to running'''

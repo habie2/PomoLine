@@ -10,3 +10,5 @@ https://towardsdatascience.com/from-novice-to-expert-how-to-write-a-configuratio
 * Create an interactive tool. With colors and maybe an interactive menu for the options.
 
 * Create a protection for keyboard interruptions (Ctrl + C on Python)
+
+* CREATE A venv
