@@ -7,7 +7,19 @@ class Pomodoro():
         self.duration = duration
         self.secs = duration * 60
         self.status = 'running'
-    
+        self.__MISS_MINUTES = 1 # Adds a 'hack' in order to make time fly
+        # It is actually the time.sleep on the counter
+
+    @property
+    def duration(self):
+        return self._duration
+    @duration.setter
+    def duration(self, duration):
+        if duration < 0:
+            raise ValueError('Duration cannot be negative.')
+        if type(duration) != int:
+            raise TypeError('Duration must be an integer.')
+        self._duration = duration
     @property
     def status(self):
         return self._status
@@ -29,7 +41,7 @@ class Pomodoro():
         
         while self.secs:
             if self.status == 'running':
-                time.sleep(1)
+                time.sleep(self.__MISS_MINUTES)
                 self.secs -= 1
             elif self.status == 'paused':
                 pass
@@ -39,6 +51,8 @@ class Pomodoro():
                 raise ValueError('Status must be running, paused, or stopped.')
 
             return self.output_formatter()
+        self.status = 'stopped'
+        return 'Countdown finished.'
 
     def output_formatter(self) -> str:
         '''Format the output of the countdown method
@@ -50,7 +64,7 @@ class Pomodoro():
             min_sec_format (str): String in the format of 'mm:ss
         '''
         mm_ss_format = divmod(self.secs, 60)
-        output = f'🍅🍅 {mm_ss_format[0]}:{mm_ss_format[1]}'
+        output = f'🍅🍅 {int(mm_ss_format[0]):02}:{int(mm_ss_format[1]):02}'
         return output
 
     def start(self):
@@ -65,22 +79,9 @@ class Pomodoro():
         '''Change status to stopped'''
         self.status = 'stopped'
     
-    def actions_menu(self):
-        '''Actions menu for pomodoro, it includes:
-        start, pause, and stop on a prompt menu.'''
-        print('Actions:')
-        actions_prompt = [{   
-            'type': 'list', 
-            'name': 'actions prompt',
-            'message': 'Actions:',
-            'choices': ['start' ,'pause', 'stop']
-    }]  
-        answer = prompt(actions_prompt)
-        if answer['actions prompt'] == 'start':
-            self.start()
-        elif answer['actions prompt'] == 'pause':
-            self.pause()
-        elif answer['actions prompt'] == 'stop':
-            self.stop()
-        else:
-            raise ValueError('Invalid action.')
+    def draw(self) -> None:
+        '''Draw the pomodoro timer'''
+        while self.status != 'stopped':
+            print(self.countdown(), end='\r')
+            # print(self.countdown()) # For debbuging purposes only
+        
