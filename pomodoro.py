@@ -64,7 +64,7 @@ class Pomodoro():
             min_sec_format (str): String in the format of 'mm:ss
         '''
         mm_ss_format = divmod(self.secs, 60)
-        output = f'🍅🍅 {int(mm_ss_format[0]):02}:{int(mm_ss_format[1]):02}'
+        output = f'🍅🍅 {int(mm_ss_format[0]):02}:{int(mm_ss_format[1]):02}' 
         return output
 
     def start(self):
