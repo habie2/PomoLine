@@ -1,2 +1,4 @@
 /envpomo
+/__pycache__
+/.vscode
 pizza_example.py
