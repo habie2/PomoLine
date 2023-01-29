@@ -20,7 +20,7 @@ For extracting a requirements of the venv:
 ```
 ~ pip install -r requirements.txt
 ```
-On this amazing journey, I also discovered:
+On this amazing journey, I also discovered this git commands:
 
 ```
 git log --oneline # shows the lasts commits 
