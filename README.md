@@ -19,4 +19,4 @@ For extracting a requirements of the venv:
 
 ```
 ~ pip install -r requirements.txt
-´´´
+```
