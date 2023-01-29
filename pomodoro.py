@@ -1,5 +1,7 @@
 import time
 from PyInquirer import prompt
+import os
+import sys
 
 class Pomodoro():
     '''Pomodoro class'''
@@ -64,7 +66,7 @@ class Pomodoro():
             min_sec_format (str): String in the format of 'mm:ss
         '''
         mm_ss_format = divmod(self.secs, 60)
-        output = f'🍅🍅 {int(mm_ss_format[0]):02}:{int(mm_ss_format[1]):02}' 
+        output = f'🍅🍅🍅 {int(mm_ss_format[0]):02}:{int(mm_ss_format[1]):02}' 
         return output
 
     def start(self):
@@ -82,6 +84,10 @@ class Pomodoro():
     def draw(self) -> None:
         '''Draw the pomodoro timer'''
         while self.status != 'stopped':
-            print(self.countdown(), end='\r')
+            
+            print('Actual pomodoro:')
+            print(self.countdown())
+            
+
             # print(self.countdown()) # For debbuging purposes only
         

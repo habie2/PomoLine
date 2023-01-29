@@ -1,11 +1,12 @@
 # PomoLine 
 PomoLine is a simple and user-friendly (we are going to try) pomodoro command line tool.
 ### Useful webs for the project.
-https://clig.dev/
-https://www.geeksforgeeks.org/command-line-interface-programming-python/
-https://realpython.com/command-line-interfaces-python-argparse/
-https://towardsdatascience.com/6-approaches-to-validate-class-attributes-in-python-b51cffb8c4ea
-https://towardsdatascience.com/from-novice-to-expert-how-to-write-a-configuration-file-in-python-273e171a8eb3
+
+* https://clig.dev/
+* https://www.geeksforgeeks.org/command-line-interface-programming-python/
+* https://realpython.com/command-line-interfaces-python-argparse/
+* https://towardsdatascience.com/6-approaches-to-validate-class-attributes-in-python-b51cffb8c4ea
+* https://towardsdatascience.com/from-novice-to-expert-how-to-write-a-configuration-file-in-python-273e171a8eb3
 ### Ideas for the future
 * Create an interactive tool. With colors and maybe an interactive menu for the options.
 
@@ -18,7 +19,7 @@ https://towardsdatascience.com/from-novice-to-expert-how-to-write-a-configuratio
 For extracting a requirements of the venv:
 
 ```
-~ pip install -r requirements.txt
+~ pip freeze
 ```
 On this amazing journey, I also discovered this git commands:
 
@@ -26,3 +27,7 @@ On this amazing journey, I also discovered this git commands:
 git log --oneline # shows the lasts commits 
 git checkout {id-commit} # restores that commit
 ```
+
+### Additional libraries for TUI's
+* Rich, https://github.com/Textualize/rich
+* Textual (based on Rich), https://github.com/Textualize/textual
