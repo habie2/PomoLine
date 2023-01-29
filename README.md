@@ -12,3 +12,11 @@ https://towardsdatascience.com/from-novice-to-expert-how-to-write-a-configuratio
 * Create a protection for keyboard interruptions (Ctrl + C on Python)
 
 * CREATE A venv
+
+### Notes on new discoveries
+
+For extracting a requirements of the venv:
+
+```
+~ pip install -r requirements.txt
+´´´
