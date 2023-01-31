@@ -1,5 +1,4 @@
 import time
-from PyInquirer import prompt
 import os
 import sys
 
