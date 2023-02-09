@@ -1,6 +1,8 @@
 import time
 import os
 import sys
+import asyncio
+import keyboard
 
 class Pomodoro():
     '''Pomodoro class'''
@@ -21,8 +23,8 @@ class Pomodoro():
         if status not in ['running', 'paused', 'stopped']:
             raise ValueError('Status must be running, paused, or stopped.')
         self._status = status
-    
-    def countdown(self) -> any:
+
+    async def countdown(self) -> any:
         '''Countdown timer for pomodoro
         Returns a string in the format of 'mm:ss'
         
@@ -32,10 +34,11 @@ class Pomodoro():
             min_sec_format (str): String in the format of 'mm:ss'
         '''
         while self.secs:
-            print('se quito un segundo')
-            
+            task = asyncio.create_task(self.check_keyboard_input())
             if self.status == 'running':
-                time.sleep(1)
+                print('llegue')
+                self.output()
+                await asyncio.sleep(1)
                 self.secs -= 1
             elif self.status == 'paused':
                 pass
@@ -44,6 +47,28 @@ class Pomodoro():
             else:
                 raise ValueError('Status must be running, paused, or stopped.')
         self.status = 'stopped'
+
+    async def keyboard_input(self):
+        press = False
+        i = 0
+        while True and not press:
+            i += 1
+            if keyboard.is_pressed('space'):
+                self.status = 'paused'
+                press= True
+            print(press, i)
+
+    async def main(self):
+        try:
+            async with asyncio.timeout(5):
+                await keyboard_input()
+        except TimeoutError:
+            print("The long operation timed out, but we've handled it.")
+
+    def test_keyboard_input(self):
+
+        asyncio.run(self.main())
+
 
     def output(self) -> str:
         '''Format the output of the countdown method
@@ -54,6 +79,7 @@ class Pomodoro():
         Returns:
             min_sec_format (str): String in the format of 'mm:ss'
         '''
+        print('legue al output')
         mm_ss_format = divmod(self.secs, 60)
         output = f'🍅 {int(mm_ss_format[0]):02}:{int(mm_ss_format[1]):02}' 
         return output
@@ -73,6 +99,6 @@ class Pomodoro():
     
 
 pomo = Pomodoro(50)
-print('se esta ejecutando')
-while True:
-    print(pomo.secs, pomo.status)
+pomo.test_keyboard_input()
+# asyncio.run(pomo.test_keyboard_input())
+# asyncio.run(pomo.countdown())
