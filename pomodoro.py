@@ -34,7 +34,7 @@ class Pomodoro():
             min_sec_format (str): String in the format of 'mm:ss'
         '''
         while self.secs:
-            task = asyncio.create_task(self.check_keyboard_input())
+            task = asyncio.create_task(self.keyboard_input())
             if self.status == 'running':
                 print('llegue')
                 self.output()
@@ -48,26 +48,32 @@ class Pomodoro():
                 raise ValueError('Status must be running, paused, or stopped.')
         self.status = 'stopped'
 
-    async def keyboard_input(self):
-        press = False
-        i = 0
-        while True and not press:
-            i += 1
+    async  def keyboard_space(self):
+        for i in range(10000000):
+            print(i)
+            await asyncio.sleep(0.01)
             if keyboard.is_pressed('space'):
                 self.status = 'paused'
-                press= True
-            print(press, i)
+                return True
+        # asyncio.sleep(10)
+        # i = 0
+        # while True:
+        #     i += 1
+        #     if keyboard.is_pressed('space'):
+        #         self.status = 'paused'
+        #         return True
+        #     print(i)
 
     async def main(self):
+        
+        task = asyncio.create_task(self.keyboard_space())
+        # task = asyncio.sleep(10)
         try:
             async with asyncio.timeout(5):
-                await keyboard_input()
+                await task
+                print('task finished, without timeout')
         except TimeoutError:
             print("The long operation timed out, but we've handled it.")
-
-    def test_keyboard_input(self):
-
-        asyncio.run(self.main())
 
 
     def output(self) -> str:
@@ -99,6 +105,7 @@ class Pomodoro():
     
 
 pomo = Pomodoro(50)
-pomo.test_keyboard_input()
+asyncio.run(pomo.main())
+#       pomo.test_keyboard_input()
 # asyncio.run(pomo.test_keyboard_input())
 # asyncio.run(pomo.countdown())

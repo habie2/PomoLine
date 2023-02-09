@@ -15,8 +15,10 @@
 # #     time.sleep(0.1)
 # os.system('cls')
 import keyboard
-i = 0
-while True:
-    if keyboard.is_pressed('space'):
-        i += 1
-        print('espacsio' + str(i))
+import time
+
+try:
+    time.sleep(2)
+    print('paso')
+except KeyboardInterrupt():
+    print('interrumpio')
