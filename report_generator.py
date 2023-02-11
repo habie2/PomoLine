@@ -35,6 +35,7 @@ class Report():
         return dict_report
 
     def append_row_csv(self):
+        # TODO add the titles of the columns
         field_names = ['start_date', 'project_name', 'duration']
         
         with open(f'pomo_reports/global_report.csv', 'a',
