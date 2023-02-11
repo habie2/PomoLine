@@ -1,5 +1,6 @@
 import json
 import datetime
+import csv
 
 class Report():
     def __init__(self, project_name:str(), duration:int = 50, 
@@ -14,7 +15,7 @@ class Report():
         self.start_date = str(start_date)
         self.duration = duration
         
-    def to_json(self) -> json:
+    def to_json(self):
         dict_report = {
             'start_date': self.start_date,
             'project_name': self.project_name,
@@ -23,14 +24,26 @@ class Report():
         return json.dumps(dict_report, indent=4)
     
     def create_new_json(self):
-        print(self.start_date)
         file_name = self.start_date[:10]+'_'+self.start_date[11:13]+'.' \
         + self.start_date[14:16]
-        with open(f'json_reports/{file_name}.json', 'w') as file:
-            file.write(self.to_json())
+        with open(f'pomo_reports/{file_name}.json', 'w') as json_file:
+            json_file.write(self.to_json())
         return file_name
+
+    def to_csv(self):
+        dict_report = [self.start_date, self.project_name, self.duration]
+        return dict_report
+
+    def append_row_csv(self):
+        field_names = ['start_date', 'project_name', 'duration']
+        
+        with open(f'pomo_reports/global_report.csv', 'a',
+        newline='') as csv_file:
+            dict_object = csv.writer(csv_file)
+  
+            dict_object.writerow(self.to_csv())
         
 
 report = Report('FSDB')
-print(report.create_new_json())
-
+report.create_new_json()
+report.append_row_csv()
