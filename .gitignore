@@ -7,3 +7,4 @@ PomoLine.code-workspace
 /timer-tester/__pycache__
 /venv
 /pomo_reports
+config.py
