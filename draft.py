@@ -16,9 +16,13 @@
 # os.system('cls')
 import keyboard
 import time
+import datetime
 
-try:
-    time.sleep(2)
-    print('paso')
-except KeyboardInterrupt():
-    print('interrumpio')
+# try:
+#     time.sleep(2)
+#     print('paso')
+# except KeyboardInterrupt():
+#     print('interrumpio')
+a = datetime.datetime(1, 2, 3)
+print(a)
+print(datetime.datetime.now())
