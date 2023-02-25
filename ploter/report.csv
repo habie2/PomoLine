@@ -1,10 +1,9 @@
-date,project,task,minutes
-20230216,No Project,CalDiff,23
-20230216,No Project,fsdb,70
-20230216,No Project,discreta,11
-20230217,No Project,fsdb,213
-20230218,No Project,dllo,36
-20230220,No Project,fsdb,72
-20230221,No Project,dllo,140
-20230222,No Project,dllo,59
-20230222,No Project,fsdb,73
+date,project,task,hours
+20230218,No Project,dllo,0.6
+20230220,No Project,FSDB,0.46
+20230220,No Project,fsdb,0.73
+20230221,No Project,dllo,2.33
+20230222,No Project,dllo,3.13
+20230222,No Project,fsdb,1.21
+20230223,No Project,dllo,1.83
+20230224,No Project,calDiff,0.16
